@@ -37,8 +37,8 @@
 
          <!--生成对应表及类名 tableName-对应的表名  domainObjectName-对应的类名-->
          <table
-                tableName="tb_empUsers"
-                domainObjectName="EmpUsers"
+                tableName="tb_department"
+                domainObjectName="EmpDepartment"
                 enableCountByExample="false"
                 enableUpdateByExample="false"
                 enableDeleteByExample="false"
