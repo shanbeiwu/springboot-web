@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.EmpUsersMapper">
+  <resultMap id="BaseResultMap" type="com.example.springboot.model.EmpUsers">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="order" jdbcType="INTEGER" property="order" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="personnel_name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="personnel_age" jdbcType="INTEGER" property="personnelAge" />
+    <result column="personnel_birth" jdbcType="DATE" property="personnelBirth" />
+    <result column="personnel_gender" jdbcType="CHAR" property="personnelGender" />
+    <result column="pub_CreatTime" jdbcType="TIMESTAMP" property="pubCreattime" />
+    <result column="pub_CreatPerson" jdbcType="VARCHAR" property="pubCreatperson" />
+    <result column="pub_LastChangeTime" jdbcType="TIMESTAMP" property="pubLastchangetime" />
+    <result column="pub_LastChangePerson" jdbcType="VARCHAR" property="pubLastchangeperson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `order`, department, personnel_name, personnel_age, personnel_birth, personnel_gender,
+    pub_CreatTime, pub_CreatPerson, pub_LastChangeTime, pub_LastChangePerson
+  </sql>
+
+  <!-- 查询所有用户 -->
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_empusers
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="com.example.springboot.model.EmpUsersKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_empusers
+    where id = #{id,jdbcType=VARCHAR}
+      and order = #{order,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.springboot.model.EmpUsersKey">
+    delete from tb_empusers
+    where id = #{id,jdbcType=VARCHAR}
+      and order = #{order,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.springboot.model.EmpUsers">
+    insert into tb_empusers (id, order, department, 
+      personnel_name, personnel_age, personnel_birth, 
+      personnel_gender, pub_CreatTime, pub_CreatPerson, 
+      pub_LastChangeTime, pub_LastChangePerson
+      )
+    values (#{id,jdbcType=VARCHAR}, #{order,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
+      #{personnelName,jdbcType=VARCHAR}, #{personnelAge,jdbcType=INTEGER}, #{personnelBirth,jdbcType=DATE}, 
+      #{personnelGender,jdbcType=CHAR}, #{pubCreattime,jdbcType=TIMESTAMP}, #{pubCreatperson,jdbcType=VARCHAR}, 
+      #{pubLastchangetime,jdbcType=TIMESTAMP}, #{pubLastchangeperson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springboot.model.EmpUsers">
+    insert into tb_empusers
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="order != null">
+        order,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="personnelName != null">
+        personnel_name,
+      </if>
+      <if test="personnelAge != null">
+        personnel_age,
+      </if>
+      <if test="personnelBirth != null">
+        personnel_birth,
+      </if>
+      <if test="personnelGender != null">
+        personnel_gender,
+      </if>
+      <if test="pubCreattime != null">
+        pub_CreatTime,
+      </if>
+      <if test="pubCreatperson != null">
+        pub_CreatPerson,
+      </if>
+      <if test="pubLastchangetime != null">
+        pub_LastChangeTime,
+      </if>
+      <if test="pubLastchangeperson != null">
+        pub_LastChangePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelAge != null">
+        #{personnelAge,jdbcType=INTEGER},
+      </if>
+      <if test="personnelBirth != null">
+        #{personnelBirth,jdbcType=DATE},
+      </if>
+      <if test="personnelGender != null">
+        #{personnelGender,jdbcType=CHAR},
+      </if>
+      <if test="pubCreattime != null">
+        #{pubCreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubCreatperson != null">
+        #{pubCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="pubLastchangetime != null">
+        #{pubLastchangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubLastchangeperson != null">
+        #{pubLastchangeperson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.model.EmpUsers">
+    update tb_empusers
+    <set>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelName != null">
+        personnel_name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelAge != null">
+        personnel_age = #{personnelAge,jdbcType=INTEGER},
+      </if>
+      <if test="personnelBirth != null">
+        personnel_birth = #{personnelBirth,jdbcType=DATE},
+      </if>
+      <if test="personnelGender != null">
+        personnel_gender = #{personnelGender,jdbcType=CHAR},
+      </if>
+      <if test="pubCreattime != null">
+        pub_CreatTime = #{pubCreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubCreatperson != null">
+        pub_CreatPerson = #{pubCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="pubLastchangetime != null">
+        pub_LastChangeTime = #{pubLastchangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pubLastchangeperson != null">
+        pub_LastChangePerson = #{pubLastchangeperson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+      and order = #{order,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.model.EmpUsers">
+    update tb_empusers
+    set department = #{department,jdbcType=VARCHAR},
+      personnel_name = #{personnelName,jdbcType=VARCHAR},
+      personnel_age = #{personnelAge,jdbcType=INTEGER},
+      personnel_birth = #{personnelBirth,jdbcType=DATE},
+      personnel_gender = #{personnelGender,jdbcType=CHAR},
+      pub_CreatTime = #{pubCreattime,jdbcType=TIMESTAMP},
+      pub_CreatPerson = #{pubCreatperson,jdbcType=VARCHAR},
+      pub_LastChangeTime = #{pubLastchangetime,jdbcType=TIMESTAMP},
+      pub_LastChangePerson = #{pubLastchangeperson,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+      and order = #{order,jdbcType=INTEGER}
+  </update>
+</mapper>
