@@ -3,7 +3,7 @@
 <mapper namespace="com.example.springboot.mapper.EmpUsersMapper">
   <resultMap id="BaseResultMap" type="com.example.springboot.model.EmpUsers">
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <id column="order" jdbcType="INTEGER" property="order" />
+    <id column="order" jdbcType="BIGINT" property="order" />
     <result column="department" jdbcType="VARCHAR" property="department" />
     <result column="personnel_name" jdbcType="VARCHAR" property="personnelName" />
     <result column="personnel_age" jdbcType="INTEGER" property="personnelAge" />
@@ -31,20 +31,18 @@
     <include refid="Base_Column_List" />
     from tb_empusers
     where id = #{id,jdbcType=VARCHAR}
-      and order = #{order,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.example.springboot.model.EmpUsersKey">
     delete from tb_empusers
     where id = #{id,jdbcType=VARCHAR}
-      and order = #{order,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.springboot.model.EmpUsers">
-    insert into tb_empusers (id, order, department, 
+    insert into tb_empusers (id, `order`, department,
       personnel_name, personnel_age, personnel_birth, 
       personnel_gender, pub_CreatTime, pub_CreatPerson, 
       pub_LastChangeTime, pub_LastChangePerson
       )
-    values (#{id,jdbcType=VARCHAR}, #{order,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{order,jdbcType=BIGINT}, #{department,jdbcType=VARCHAR},
       #{personnelName,jdbcType=VARCHAR}, #{personnelAge,jdbcType=INTEGER}, #{personnelBirth,jdbcType=DATE}, 
       #{personnelGender,jdbcType=CHAR}, #{pubCreattime,jdbcType=TIMESTAMP}, #{pubCreatperson,jdbcType=VARCHAR}, 
       #{pubLastchangetime,jdbcType=TIMESTAMP}, #{pubLastchangeperson,jdbcType=VARCHAR}
@@ -57,7 +55,7 @@
         id,
       </if>
       <if test="order != null">
-        order,
+        `order`,
       </if>
       <if test="department != null">
         department,
@@ -92,7 +90,7 @@
         #{id,jdbcType=VARCHAR},
       </if>
       <if test="order != null">
-        #{order,jdbcType=INTEGER},
+        #{order,jdbcType=BIGINT},
       </if>
       <if test="department != null">
         #{department,jdbcType=VARCHAR},
@@ -155,7 +153,7 @@
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
-      and order = #{order,jdbcType=INTEGER}
+      and `order` = #{order,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.springboot.model.EmpUsers">
     update tb_empusers
@@ -169,6 +167,6 @@
       pub_LastChangeTime = #{pubLastchangetime,jdbcType=TIMESTAMP},
       pub_LastChangePerson = #{pubLastchangeperson,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
-      and order = #{order,jdbcType=INTEGER}
+      and `order` = #{order,jdbcType=BIGINT}
   </update>
 </mapper>

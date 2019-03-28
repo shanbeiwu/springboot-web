@@ -1,7 +1,6 @@
 package com.example.springboot.mapper;
 
 import com.example.springboot.model.EmpUsers;
-import com.example.springboot.model.EmpUsersKey;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

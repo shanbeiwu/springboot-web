@@ -60,26 +60,29 @@
                 </tr>
               </thead>
              <tbody>
-                <tr th:each="empusers : ${emps}">
-                    <td th:text="${empusers.order}"></td>
-                    <td>[[${empusers.department}]]</td>
-                    <td th:text="${empusers.personnelName}"></td>
-                    <td th:text="${empusers.personnelAge}"></td>
-                    <td th:text="${empusers.personnelGender}"></td>
-                    <td th:text="${#dates.format(empusers.personnelBirth, 'yyyy-MM-dd')}"></td>
-                    <td th:text="${#dates.format(empusers.pubCreattime, 'yyyy-MM-dd HH:MM')}"></td>
-                    <td th:text="${empusers.pubCreatperson}"></td>
-                    <td th:text="${#dates.format(empusers.pubLastchangetime, 'yyyy-MM-dd HH:MM')}"></td>
-                    <td th:text="${empusers.pubLastchangeperson}"></td>
+                <tr th:each="empuser : ${emps}">
+                    <td th:text="${empuser.order}"></td>
+                    <td>[[${empuser.department}]]</td>
+                    <td th:text="${empuser.personnelName}"></td>
+                    <td th:text="${empuser.personnelAge}"></td>
+                    <td th:text="${empuser.personnelGender}"></td>
+                    <td th:text="${#dates.format(empuser.personnelBirth, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(empuser.pubCreattime, 'yyyy-MM-dd HH:MM')}"></td>
+                    <td th:text="${empuser.pubCreatperson}"></td>
+                    <td th:text="${#dates.format(empuser.pubLastchangetime, 'yyyy-MM-dd HH:MM')}"></td>
+                    <td th:text="${empuser.pubLastchangeperson}"></td>
                     <td>
-                        <button class="btn btn-sm btn-primary">编辑</button>
-                        <button class="btn btn-sm btn-danger">删除</button>
+                        <a class="btn btn-sm btn-primary" th:href="@{/emp/update/} + ${empuser.id}">编辑</a>
+                        <button  th:attr="del_url=@{/emp/delete/} + ${empuser.id}" class="btn btn-sm btn-danger deletebtn">删除</button>
                     </td>
                 </tr>
              </tbody>
             </table>
           </div>
         </main>
+          <form id="deleteEmpFrom" method="post">
+              <input type="hidden" name="_method" value="delete">
+          </form>
       </div>
     </div>
 
@@ -95,6 +98,11 @@
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
+        $(".deletebtn").click(function () {
+            var action = $(this).attr("del_url");
+            $("#deleteEmpFrom").attr("action", action).submit();
+        })
+
     </script>
 
     <!-- Graphs 
