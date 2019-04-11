@@ -89,6 +89,19 @@
             <version>3.3.1</version>
         </dependency>
 
+        <!-- 添加druid数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+
+        <!-- 添加spring boot缓存 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
@@ -117,7 +130,7 @@
             </plugin>
         </plugins>
 
-        <!-- 制定配置文件生成位置，不加可能会造成找不到xml，jsp文件 -->
+        <!-- 制定配置文件生成位置，不加可能会造成找不到xml，jsp文件
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -130,8 +143,8 @@
                 <includes>
                     <include>**/*.*</include>
                 </includes>
-            </resource>
-            <!-- 这部分有待优化，会在mybatis生成文件时配置文件路径到webapp -->
+            </resource>-->
+            <!-- 这部分有待优化，会在mybatis生成文件时配置文件路径到webapp
             <resource>
                 <directory>src/main/webapp</directory>
                 <targetPath>META-INF/resources</targetPath>
@@ -142,7 +155,7 @@
                     <exclude>generatorConfig.xml</exclude>
                 </excludes>
             </resource>
-        </resources>
+        </resources>-->
 
     </build>
 

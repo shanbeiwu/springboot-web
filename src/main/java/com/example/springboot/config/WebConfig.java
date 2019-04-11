@@ -2,6 +2,7 @@ package com.example.springboot.config;
 
 
 import com.example.springboot.interceptor.LoginInterceptor;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -9,6 +10,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.lang.reflect.Method;
 
 /**
  * 原WebMvcConfigurerAdapter已被废弃，现在改用实现WebMvcConfigurer
@@ -40,6 +43,10 @@ public class WebConfig  implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns(addPathPatterns).excludePathPatterns(excludePathPatterns);
     }
 
+    /**
+     * 设置访问路径的映射
+     * @param registry
+     */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("Login");
@@ -55,5 +62,19 @@ public class WebConfig  implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         return new WebLocaleResolver();
+    }
+
+    /**
+     *
+     *自定义keygenerator
+     */
+    @Bean("myKeyGenerator")
+    public KeyGenerator keyGenerator() {
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object o, Method method, Object... objects) {
+                return o;
+            }
+        };
     }
 }

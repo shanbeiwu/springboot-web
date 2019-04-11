@@ -4,6 +4,8 @@ import com.example.springboot.UserService.EmpUsersMapperService;
 import com.example.springboot.mapper.EmpUsersMapper;
 import com.example.springboot.model.EmpUsers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,11 +27,13 @@ public class EmpUsersMapperServiceImpl implements EmpUsersMapperService {
     }
 
     @Override
+    @CachePut(value = {"user"},key = "#record.id")
     public int updateByPrimaryKeySelective(EmpUsers record) {
         return empUsersMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
+    @Cacheable(value = {"user"}/*,keyGenerator = "myKeyGenerator"*/)
     public List<Object> selectAllUser() {
         return empUsersMapper.selectAllUser();
     }
