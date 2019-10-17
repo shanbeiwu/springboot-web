@@ -4,7 +4,9 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 /**
  DES加密介绍
@@ -17,6 +19,9 @@ import java.security.SecureRandom;
 
 public class DES {
 
+    final static Base64.Encoder encoder = Base64.getEncoder();
+    final static Base64.Decoder decoder = Base64.getDecoder();
+
     //测试
     public static void main(String args[]) {
         //待加密内容
@@ -27,6 +32,17 @@ public class DES {
         System.out.println(str);
         byte[] result = DES.encrypt(str.getBytes(),password);
         System.out.println("加密后："+ new String(result));
+
+        //进行base64转码
+        String resultBase64 = encodeBase64(new String(result));
+        System.out.println("加密并转码后：" + resultBase64);
+
+        // 进行传输处理等操作
+
+        //进行base64解码
+        byte[] unResultBase64 = decodeBase64(resultBase64).getBytes();
+        System.out.println(unResultBase64.length);
+        System.out.println("转码加密信息后：" + new String(unResultBase64));
 
         //直接将如上内容解密
         try {
@@ -85,5 +101,23 @@ public class DES {
         cipher.init(Cipher.DECRYPT_MODE, securekey, random);
         // 真正开始解密操作
         return cipher.doFinal(src);
+    }
+
+    /**
+     * 字符串base64编码
+     * @param text
+     * @return
+     */
+    public static String encodeBase64(String text) {
+        return encoder.encodeToString(text.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * base64字符串解码
+     * @param encodeedText
+     * @return
+     */
+    public static String decodeBase64(String encodeedText) {
+        return new String(decoder.decode(encodeedText), StandardCharsets.UTF_8);
     }
 }
