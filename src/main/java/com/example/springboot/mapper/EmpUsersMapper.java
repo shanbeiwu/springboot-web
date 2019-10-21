@@ -1,6 +1,7 @@
 package com.example.springboot.mapper;
 
 import com.example.springboot.model.EmpUsers;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,4 +21,9 @@ public interface EmpUsersMapper {
     int updateByPrimaryKey(EmpUsers record);
 
     List<Object> selectAllUser();
+
+    /**
+     * 分页查询数据
+     */
+    List<EmpUsers> findByPage();
 }
