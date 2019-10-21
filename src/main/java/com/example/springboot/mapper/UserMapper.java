@@ -2,6 +2,7 @@ package com.example.springboot.mapper;
 
 import com.example.springboot.model.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @MapperScan(basePackages="com.example.springboot.mapper")注解来替换
  */
 @Mapper
+@Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
