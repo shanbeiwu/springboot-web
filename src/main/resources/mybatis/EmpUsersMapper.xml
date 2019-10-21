@@ -25,6 +25,12 @@
     <include refid="Base_Column_List" />
     from tb_empusers
   </select>
+  <!-- 分页查询数据 -->
+  <select id="findByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_empusers
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="com.example.springboot.model.EmpUsersKey" resultMap="BaseResultMap">
     select 

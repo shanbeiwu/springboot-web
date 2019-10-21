@@ -3,10 +3,11 @@ package com.example.springboot.model;
 import lombok.Data;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class EmpUsers extends EmpUsersKey {
+public class EmpUsers extends EmpUsersKey implements Serializable {
     private String id;
 
     private Long order;

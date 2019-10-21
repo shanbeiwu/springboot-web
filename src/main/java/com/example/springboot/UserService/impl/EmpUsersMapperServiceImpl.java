@@ -3,6 +3,8 @@ package com.example.springboot.UserService.impl;
 import com.example.springboot.UserService.EmpUsersMapperService;
 import com.example.springboot.mapper.EmpUsersMapper;
 import com.example.springboot.model.EmpUsers;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -30,6 +32,12 @@ public class EmpUsersMapperServiceImpl implements EmpUsersMapperService {
     @CachePut(value = {"user"},key = "#record.id")
     public int updateByPrimaryKeySelective(EmpUsers record) {
         return empUsersMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public List<EmpUsers> findByPage(int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
+        return empUsersMapper.findByPage();
     }
 
     @Override

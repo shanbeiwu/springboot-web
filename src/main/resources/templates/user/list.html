@@ -43,7 +43,7 @@
 
           <h2><a class="btn btn-sm btn-success" href="add" th:href="@{/users/add}">员工添加</a></h2>
           <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm table-hover">
               <thead>
                 <tr>
                   <th>序号</th>
@@ -77,6 +77,11 @@
                     </td>
                 </tr>
              </tbody>
+             <tfoot>
+                <tr>
+                    <!--<td>显示第 i 到第 i 条记录，总共 i 条记录，每页显示 i 条记录</td>-->
+                </tr>
+             </tfoot>
             </table>
           </div>
         </main>
