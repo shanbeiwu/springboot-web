@@ -6,6 +6,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 public class JsoupTest {
 
@@ -20,7 +22,11 @@ public class JsoupTest {
      * @param url 虎扑新闻列表页url
      */
     public void jsoupList(String url){
+        String ip = "dl-proxy.neusoft.com";
+
+        int port = 8080;
         try {
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
             Document document = Jsoup.connect(url).get();
             // 使用 css选择器 提取列表新闻 a 标签
             // <a href="https://voice.hupu.com/nba/2484553.html" target="_blank">霍华德：夏休期内曾节食30天，这考验了我的身心</a>
