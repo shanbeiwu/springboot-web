@@ -142,7 +142,7 @@
             <!-- jsoup HTML parser library @ https://jsoup.org/ -->
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.12.1</version>
+            <version>1.14.2</version>
         </dependency>
         <!--爬虫jar包引用结束-->
     </dependencies>
